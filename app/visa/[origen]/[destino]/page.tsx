@@ -1,4 +1,4 @@
-import { notFound, redirect } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { Metadata } from "next";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { resolveOrigin } from "@/lib/countryIndex";
@@ -24,22 +24,22 @@ const extractEmojiAndLabel = (display: string): EmojiLabel => {
 const buildRequirementLabel = (requirement: ReturnType<typeof normalizeRequirement>) => {
   switch (requirement.type) {
     case "NO_VISA_DAYS":
-      return requirement.days ? `no necesitan visa (${requirement.days} días)` : "no necesitan visa";
+      return requirement.days ? `do not need a visa (${requirement.days} days)` : "do not need a visa";
     case "NO_VISA":
-      return "no necesitan visa";
+      return "do not need a visa";
     case "REQUIRES_VISA":
-      return "sí requieren visa";
+      return "do require a visa";
     case "VOA":
-      return "pueden obtener visa a la llegada";
+      return "can get a visa on arrival";
     case "E_VISA":
-      return "requieren eVisa";
+      return "require an eVisa";
     case "ESTA":
-      return "requieren ESTA";
+      return "require ESTA";
     case "ETA":
-      return "requieren ETA";
+      return "require ETA";
     case "UNKNOWN":
     default:
-      return "tienen requisitos de visa por confirmar";
+      return "have visa requirements pending confirmation";
   }
 };
 
@@ -54,7 +54,7 @@ const buildSeoSentence = ({
   requirementLabel: string;
   requirementEmoji: string;
 }) =>
-  `Los ciudadanos de ${origenEs}${requirementEmoji ? ` ${requirementEmoji}` : ""} ${requirementLabel} para viajar a ${destinoEs}.`;
+  `Citizens of ${origenEs}${requirementEmoji ? ` ${requirementEmoji}` : ""} ${requirementLabel} to travel to ${destinoEs}.`;
 
 export async function generateMetadata({
   params,
@@ -62,13 +62,13 @@ export async function generateMetadata({
   params: { origen: string; destino: string };
 }): Promise<Metadata> {
   const origin = resolveOrigin(params.origen);
-  if (!origin) return { title: "Ruta no encontrada" };
+  if (!origin) return { title: "Route not found" };
 
   const data = readVisaDataByKey(origin.entry.key);
-  if (!data) return { title: "Ruta no encontrada" };
+  if (!data) return { title: "Route not found" };
 
   const destination = resolveDestinationBySlug(data, params.destino);
-  if (!destination) return { title: "Ruta no encontrada" };
+  if (!destination) return { title: "Route not found" };
 
   const canonicalSlug = destination.canonicalSlug;
   const originSlug = origin.canonicalSlug;
@@ -76,8 +76,8 @@ export async function generateMetadata({
   const canonical = `https://necesitovisa.com/visa/${originSlug}/${canonicalSlug}`;
 
   return {
-    title: `¿Necesito visa para ${destination.destination.name_es} si soy de ${originNameEs}?`,
-    description: `Revisa el requisito de visa para viajar de ${originNameEs} a ${destination.destination.name_es}.`,
+    title: `Do I need a visa for ${destination.destination.name_es} if I am from ${originNameEs}?`,
+    description: `Check the visa requirement for travel from ${originNameEs} to ${destination.destination.name_es}.`,
     alternates: {
       canonical,
     },
@@ -89,7 +89,7 @@ export default function VisaDetailPage({ params }: { params: { origen: string; d
   if (!origin) return notFound();
 
   if (origin.redirected) {
-    redirect(`/visa/${origin.canonicalSlug}/${params.destino}`);
+    permanentRedirect(`/visa/${origin.canonicalSlug}/${params.destino}`);
   }
 
   const data = readVisaDataByKey(origin.entry.key);
@@ -99,7 +99,7 @@ export default function VisaDetailPage({ params }: { params: { origen: string; d
   if (!destinationResolution) return notFound();
 
   if (params.destino !== destinationResolution.canonicalSlug) {
-    redirect(`/visa/${data.origin_slug_es}/${destinationResolution.canonicalSlug}`);
+    permanentRedirect(`/visa/${data.origin_slug_es}/${destinationResolution.canonicalSlug}`);
   }
 
   const { destination } = destinationResolution;
@@ -114,7 +114,7 @@ export default function VisaDetailPage({ params }: { params: { origen: string; d
   void label;
   const requirementLabel = buildRequirementLabel(normalizedRequirement);
   const seoSentence = isDomesticTrip
-    ? `Los ciudadanos de ${originNameEs} no requieren visa para ingresar a ${destination.name_es} (viaje dentro del mismo país).`
+    ? `Citizens of ${originNameEs} do not need a visa to enter ${destination.name_es} (domestic trip).`
     : buildSeoSentence({
         origenEs: originNameEs,
         destinoEs: destination.name_es,
@@ -128,7 +128,7 @@ export default function VisaDetailPage({ params }: { params: { origen: string; d
       originName: originNameEs,
       destinationName: destination.name_es,
     }) ||
-    "Los requisitos pueden cambiar y dependen del tipo de viaje (turismo, trabajo, estudio). Para confirmar el trámite exacto y documentos, revisa siempre fuentes oficiales.";
+    "Requirements can change and depend on your trip purpose (tourism, work, study). Always verify exact procedures and documents on official sources.";
   const visaFaq = getVisaFaq(normalizedRequirement.type, destination.name_es);
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -144,7 +144,7 @@ export default function VisaDetailPage({ params }: { params: { origen: string; d
   };
 
   const breadcrumbCrumbs = [
-    { label: "Inicio", href: "/" },
+    { label: "Home", href: "/" },
     { label: "Visas", href: "/visa" },
     {
       label: `${originNameEs} → ${destination.name_es}`,
@@ -158,14 +158,14 @@ export default function VisaDetailPage({ params }: { params: { origen: string; d
 
       <div className="space-y-3">
         <h1 className="text-3xl font-bold text-slate-900">
-          ¿Necesito visa para viajar a {destination.name_es} si soy de {originNameEs}?
+          Do I need a visa to travel to {destination.name_es} if I am from {originNameEs}?
         </h1>
         <div className="flex flex-col gap-2">
-          <p className="text-lg font-semibold text-slate-900">Respuesta rápida:</p>
+          <p className="text-lg font-semibold text-slate-900">Quick answer:</p>
           <div className="flex items-center gap-3">
             {isDomesticTrip ? (
               <span className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700">
-                ☑️ Viaje dentro del mismo país
+                ☑️ Domestic trip
               </span>
             ) : (
               <VisaRequirementBadge requirement={normalizedRequirement} />
@@ -187,9 +187,9 @@ export default function VisaDetailPage({ params }: { params: { origen: string; d
       {!isDomesticTrip && (
         <div className="card p-6 space-y-4">
           <div className="space-y-2">
-            <h2 className="text-xl font-semibold text-slate-900">❓ Micro-FAQ sobre el requisito de viaje</h2>
+            <h2 className="text-xl font-semibold text-slate-900">❓ Quick FAQ about this travel requirement</h2>
             <p className="text-sm text-slate-600">
-              Respuestas rápidas sobre el tipo de autorización más común para visitas cortas.
+              Short answers about the most common authorization for short visits.
             </p>
           </div>
           <div className="space-y-2">

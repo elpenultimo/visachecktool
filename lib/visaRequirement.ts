@@ -17,14 +17,14 @@ type NormalizedRequirement = {
 };
 
 export const NORMALIZATION_RULES = [
-  { match: "NUMBER_ONLY", type: "NO_VISA_DAYS", icon: "☑️", label: (d: number) => `No necesita visa (${d} días)` },
-  { includes: ["visa free", "visa-free"], type: "NO_VISA", icon: "☑️", label: "No necesita visa" },
-  { includes: ["e-visa", "evisa"], type: "E_VISA", icon: "🟨", label: "e-Visa (trámite online)" },
-  { includes: ["esta"], type: "ESTA", icon: "🟦", label: "ESTA (autorización electrónica)" },
-  { includes: ["eta"], type: "ETA", icon: "🟦", label: "eTA / ETA (autorización electrónica)" },
-  { includes: ["visa on arrival", "on arrival"], type: "VOA", icon: "🟧", label: "Visa a la llegada" },
-  { includes: ["visa required", "required"], type: "REQUIRES_VISA", icon: "❌", label: "Sí requiere visa" },
-  { fallback: true, type: "UNKNOWN", icon: "⚠️", label: "Requisito no especificado" },
+  { match: "NUMBER_ONLY", type: "NO_VISA_DAYS", icon: "☑️", label: (d: number) => `No visa required (${d} days)` },
+  { includes: ["visa free", "visa-free"], type: "NO_VISA", icon: "☑️", label: "No visa required" },
+  { includes: ["e-visa", "evisa"], type: "E_VISA", icon: "🟨", label: "eVisa (online process)" },
+  { includes: ["esta"], type: "ESTA", icon: "🟦", label: "ESTA (electronic authorization)" },
+  { includes: ["eta"], type: "ETA", icon: "🟦", label: "eTA / ETA (electronic authorization)" },
+  { includes: ["visa on arrival", "on arrival"], type: "VOA", icon: "🟧", label: "Visa on arrival" },
+  { includes: ["visa required", "required"], type: "REQUIRES_VISA", icon: "❌", label: "Visa required" },
+  { fallback: true, type: "UNKNOWN", icon: "⚠️", label: "Requirement not specified" },
 ] as const;
 
 export function normalizeRequirement(raw: string | null | undefined): NormalizedRequirement {
@@ -36,8 +36,8 @@ export function normalizeRequirement(raw: string | null | undefined): Normalized
       raw: raw ?? "",
       type: "NO_VISA_DAYS",
       days,
-      label: `No necesita visa (${days} días)`,
-      display: `☑️ No necesita visa (${days} días)`,
+      label: `No visa required (${days} days)`,
+      display: `☑️ No visa required (${days} days)`,
     };
   }
 
@@ -45,8 +45,8 @@ export function normalizeRequirement(raw: string | null | undefined): Normalized
     return {
       raw: raw ?? "",
       type: "NO_VISA",
-      label: "No necesita visa",
-      display: "☑️ No necesita visa",
+      label: "No visa required",
+      display: "☑️ No visa required",
     };
   }
 
@@ -54,8 +54,8 @@ export function normalizeRequirement(raw: string | null | undefined): Normalized
     return {
       raw: raw ?? "",
       type: "E_VISA",
-      label: "e-Visa (trámite online)",
-      display: "🟨 e-Visa (trámite online)",
+      label: "eVisa (online process)",
+      display: "🟨 eVisa (online process)",
     };
   }
 
@@ -63,8 +63,8 @@ export function normalizeRequirement(raw: string | null | undefined): Normalized
     return {
       raw: raw ?? "",
       type: "ESTA",
-      label: "ESTA (autorización electrónica)",
-      display: "🟦 ESTA (autorización electrónica)",
+      label: "ESTA (electronic authorization)",
+      display: "🟦 ESTA (electronic authorization)",
     };
   }
 
@@ -72,8 +72,8 @@ export function normalizeRequirement(raw: string | null | undefined): Normalized
     return {
       raw: raw ?? "",
       type: "ETA",
-      label: "eTA / ETA (autorización electrónica)",
-      display: "🟦 eTA / ETA (autorización electrónica)",
+      label: "eTA / ETA (electronic authorization)",
+      display: "🟦 eTA / ETA (electronic authorization)",
     };
   }
 
@@ -81,8 +81,8 @@ export function normalizeRequirement(raw: string | null | undefined): Normalized
     return {
       raw: raw ?? "",
       type: "VOA",
-      label: "Visa a la llegada",
-      display: "🟧 Visa a la llegada",
+      label: "Visa on arrival",
+      display: "🟧 Visa on arrival",
     };
   }
 
@@ -90,16 +90,16 @@ export function normalizeRequirement(raw: string | null | undefined): Normalized
     return {
       raw: raw ?? "",
       type: "REQUIRES_VISA",
-      label: "Sí requiere visa",
-      display: "❌ Sí requiere visa",
+      label: "Visa required",
+      display: "❌ Visa required",
     };
   }
 
   return {
     raw: raw ?? "",
     type: "UNKNOWN",
-    label: "Requisito no especificado",
-    display: "⚠️ Requisito no especificado",
+    label: "Requirement not specified",
+    display: "⚠️ Requirement not specified",
   };
 }
 

@@ -53,36 +53,36 @@ export function VisaSelector({ countries }: VisaSelectorProps) {
     <section className="space-y-8">
       <div className="card p-6 space-y-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="text-xl font-semibold text-slate-900">Selección actual</h2>
+          <h2 className="text-xl font-semibold text-slate-900">Current selection</h2>
           <button
             type="button"
             onClick={handleReset}
             className="text-xs font-semibold text-slate-600 hover:text-brand-primary underline underline-offset-2"
           >
-            Limpiar selección
+            Clear selection
           </button>
         </div>
         <div className="grid gap-3 text-sm text-slate-700 sm:grid-cols-2">
           <div className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3">
-            <p className="text-xs uppercase tracking-wide text-slate-500">País de ciudadanía</p>
+            <p className="text-xs uppercase tracking-wide text-slate-500">Citizenship country</p>
             {selectedOrigin ? (
               <p className="mt-1 flex items-center gap-2 font-semibold text-slate-900">
                 {selectedOriginFlag ? <span aria-hidden>{selectedOriginFlag}</span> : null}
                 <span>{selectedOrigin.name_es}</span>
               </p>
             ) : (
-              <p className="mt-1 text-slate-500">Pendiente</p>
+              <p className="mt-1 text-slate-500">Pending</p>
             )}
           </div>
           <div className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3">
-            <p className="text-xs uppercase tracking-wide text-slate-500">Destino</p>
+            <p className="text-xs uppercase tracking-wide text-slate-500">Destination</p>
             {selectedDestination ? (
               <p className="mt-1 flex items-center gap-2 font-semibold text-slate-900">
                 {selectedDestinationFlag ? <span aria-hidden>{selectedDestinationFlag}</span> : null}
                 <span>{selectedDestination.name_es}</span>
               </p>
             ) : (
-              <p className="mt-1 text-slate-500">Pendiente</p>
+              <p className="mt-1 text-slate-500">Pending</p>
             )}
           </div>
         </div>
@@ -92,13 +92,13 @@ export function VisaSelector({ countries }: VisaSelectorProps) {
           disabled={!selectedOrigin || !selectedDestination}
           className="inline-flex items-center justify-center rounded-lg bg-brand-primary px-4 py-2 text-sm font-semibold text-white shadow-soft transition hover:bg-brand-dark disabled:cursor-not-allowed disabled:bg-slate-300"
         >
-          Ver requisitos
+          Check requirements
         </button>
       </div>
 
       <div className="grid gap-8 md:grid-cols-2">
         <div className="card p-6 space-y-3">
-          <h2 className="text-xl font-semibold text-slate-900">País de ciudadanía</h2>
+          <h2 className="text-xl font-semibold text-slate-900">Citizenship country</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm">
             {countries.map((country, index) => {
               const isSelected = selectedOrigin?.slug_es === country.slug_es;
@@ -108,7 +108,7 @@ export function VisaSelector({ countries }: VisaSelectorProps) {
                   ref={index === 0 ? originButtonRef : undefined}
                   type="button"
                   aria-pressed={isSelected}
-                  aria-label={`Seleccionar ${country.name_es} como país de ciudadanía`}
+                  aria-label={`Select ${country.name_es} as citizenship country`}
                   onClick={() => setSelectedOrigin(country)}
                   onKeyDown={(event) => handleKeyboardSelect(event, () => setSelectedOrigin(country))}
                   className={`rounded-lg border px-3 py-2 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 hover:border-brand-primary hover:text-brand-primary ${
@@ -124,7 +124,7 @@ export function VisaSelector({ countries }: VisaSelectorProps) {
           </div>
         </div>
         <div className="card p-6 space-y-3">
-          <h2 className="text-xl font-semibold text-slate-900">Destinos disponibles</h2>
+          <h2 className="text-xl font-semibold text-slate-900">Available destinations</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm">
             {countries.map((country) => {
               const isSelected = selectedDestination?.slug_es === country.slug_es;
@@ -133,7 +133,7 @@ export function VisaSelector({ countries }: VisaSelectorProps) {
                   key={country.slug_es}
                   type="button"
                   aria-pressed={isSelected}
-                  aria-label={`Seleccionar ${country.name_es} como destino`}
+                  aria-label={`Select ${country.name_es} as destination`}
                   onClick={() => setSelectedDestination(country)}
                   onKeyDown={(event) => handleKeyboardSelect(event, () => setSelectedDestination(country))}
                   className={`rounded-lg border px-3 py-2 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 hover:border-brand-primary hover:text-brand-primary ${

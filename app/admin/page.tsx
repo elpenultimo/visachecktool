@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 
 export const metadata = {
   title: "NecesitoVisa.com",
-  description: "Área interna",
+  description: "Internal area",
 };
 
 export const dynamic = "force-dynamic";
@@ -59,7 +59,7 @@ const RequirementRow = ({
           visaRequired ? "bg-rose-100 text-rose-800" : "bg-emerald-100 text-emerald-800"
         }`}
       >
-        {visaRequired ? "Requiere visa" : "Sin visa"}
+        {visaRequired ? "Visa required" : "No visa"}
       </span>
     </td>
     <td className="px-3 py-2 text-sm text-slate-600">{lastReviewedText}</td>
@@ -124,22 +124,22 @@ export default function AdminPage({ searchParams }: AdminPageProps) {
   return (
     <div className="container-box py-10 space-y-8">
       <div className="space-y-2">
-        <p className="text-xs font-medium uppercase tracking-wide text-brand-primary">Administración</p>
-        <h1 className="text-3xl font-bold text-slate-900">Dashboard de requisitos</h1>
-        <p className="text-sm text-slate-600">Revisa combinaciones de origen/destino y su estado de visado.</p>
+        <p className="text-xs font-medium uppercase tracking-wide text-brand-primary">Admin</p>
+        <h1 className="text-3xl font-bold text-slate-900">Requirements dashboard</h1>
+        <p className="text-sm text-slate-600">Review origin/destination combinations and visa status.</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard label="Países de origen" value={originCountries.length} />
-        <StatCard label="Destinos" value={destinationCountries.length} />
-        <StatCard label="Combinaciones" value={requirements.length} />
-        <StatCard label="Requieren visa" value={`${requiresVisaCount} / ${requirements.length}`} />
+        <StatCard label="Origin countries" value={originCountries.length} />
+        <StatCard label="Destinations" value={destinationCountries.length} />
+        <StatCard label="Combinations" value={requirements.length} />
+        <StatCard label="Require visa" value={`${requiresVisaCount} / ${requirements.length}`} />
       </div>
 
       <div className="card p-6 space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-xl font-semibold text-slate-900">Listado de combinaciones</h2>
-          <p className="text-sm text-slate-600">Última revisión y semáforo por fila.</p>
+          <h2 className="text-xl font-semibold text-slate-900">Combinations list</h2>
+          <p className="text-sm text-slate-600">Last review and freshness indicator per row.</p>
         </div>
         <div className="grid gap-3 md:grid-cols-3">
           {(["green", "yellow", "red"] as ReviewStatusKey[]).map((statusKey) => (
@@ -159,27 +159,27 @@ export default function AdminPage({ searchParams }: AdminPageProps) {
         <form className="grid gap-3 md:grid-cols-3" method="get">
           <input type="hidden" name="key" value={providedKey} />
           <label className="flex flex-col gap-1 text-sm text-slate-700">
-            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Semáforo</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Freshness</span>
             <select
               name="status"
               defaultValue={statusFilter}
               className="rounded-lg border border-slate-200 px-3 py-2 text-sm shadow-soft focus:border-brand-primary focus:outline-none"
             >
-              <option value="all">Todas</option>
+              <option value="all">All</option>
               <option value="green">Actualizado (🟢)</option>
-              <option value="yellow">Por revisar (🟡)</option>
+              <option value="yellow">Needs review (🟡)</option>
               <option value="red">Desactualizado (🔴)</option>
             </select>
           </label>
           <label className="flex flex-col gap-1 text-sm text-slate-700">
-            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Ordenar</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Sort</span>
             <select
               name="sort"
               defaultValue={sortOption}
               className="rounded-lg border border-slate-200 px-3 py-2 text-sm shadow-soft focus:border-brand-primary focus:outline-none"
             >
-              <option value="stale">Más desactualizado primero</option>
-              <option value="recent">Más actualizado primero</option>
+              <option value="stale">Most outdated first</option>
+              <option value="recent">Most recently updated first</option>
             </select>
           </label>
           <div className="flex items-end">
@@ -187,7 +187,7 @@ export default function AdminPage({ searchParams }: AdminPageProps) {
               type="submit"
               className="inline-flex w-full items-center justify-center rounded-lg bg-brand-primary px-4 py-2 text-sm font-semibold text-white shadow-soft hover:bg-brand-dark"
             >
-              Aplicar filtros
+              Apply filters
             </button>
           </div>
         </form>
@@ -195,11 +195,11 @@ export default function AdminPage({ searchParams }: AdminPageProps) {
           <table className="min-w-full text-left">
             <thead>
               <tr className="text-xs uppercase tracking-wide text-slate-500 border-b border-slate-200">
-                <th className="px-3 py-2">Origen</th>
-                <th className="px-3 py-2">Destino</th>
+                <th className="px-3 py-2">Origin</th>
+                <th className="px-3 py-2">Destination</th>
                 <th className="px-3 py-2">Visa</th>
-                <th className="px-3 py-2">Última revisión</th>
-                <th className="px-3 py-2">Semáforo</th>
+                <th className="px-3 py-2">Last review</th>
+                <th className="px-3 py-2">Freshness</th>
               </tr>
             </thead>
             <tbody>
