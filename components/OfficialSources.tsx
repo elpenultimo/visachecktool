@@ -120,8 +120,7 @@ export function OfficialSources({ originName, destinationName, isDomesticTrip = 
 
       <div className="rounded-lg bg-amber-50 p-3 text-sm text-amber-900">
         <p>
-          Immigration policies can change without notice. NecesitoVisa.com is not responsible for updates made after
-          your consultation date.
+          Visa policies can change at any time. Visa Checker Tool is not responsible for updates made after your consultation date.
         </p>
       </div>
     </div>

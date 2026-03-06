@@ -54,7 +54,7 @@ const buildSeoSentence = ({
   requirementLabel: string;
   requirementEmoji: string;
 }) =>
-  `Citizens of ${origenEs}${requirementEmoji ? ` ${requirementEmoji}` : ""} ${requirementLabel} to travel to ${destinoEs}.`;
+  `${origenEs} passport holders${requirementEmoji ? ` ${requirementEmoji}` : ""} ${requirementLabel} to travel to ${destinoEs}.`;
 
 export async function generateMetadata({
   params,
@@ -76,8 +76,8 @@ export async function generateMetadata({
   const canonical = `https://necesitovisa.com/visa/${originSlug}/${canonicalSlug}`;
 
   return {
-    title: `Do I need a visa for ${destination.destination.name_es} if I am from ${originNameEs}?`,
-    description: `Check the visa requirement for travel from ${originNameEs} to ${destination.destination.name_es}.`,
+    title: `Visa requirements for ${originNameEs} passport holders traveling to ${destination.destination.name_es}`,
+    description: `Check travel visa requirements and visa policy details for ${originNameEs} passport holders traveling to ${destination.destination.name_es}.`,
     alternates: {
       canonical,
     },
@@ -114,7 +114,7 @@ export default function VisaDetailPage({ params }: { params: { origen: string; d
   void label;
   const requirementLabel = buildRequirementLabel(normalizedRequirement);
   const seoSentence = isDomesticTrip
-    ? `Citizens of ${originNameEs} do not need a visa to enter ${destination.name_es} (domestic trip).`
+    ? `${originNameEs} passport holders do not need a visa to enter ${destination.name_es} for domestic travel.`
     : buildSeoSentence({
         origenEs: originNameEs,
         destinoEs: destination.name_es,
@@ -158,7 +158,7 @@ export default function VisaDetailPage({ params }: { params: { origen: string; d
 
       <div className="space-y-3">
         <h1 className="text-3xl font-bold text-slate-900">
-          Do I need a visa to travel to {destination.name_es} if I am from {originNameEs}?
+          What are the visa requirements for {originNameEs} passport holders traveling to {destination.name_es}?
         </h1>
         <div className="flex flex-col gap-2">
           <p className="text-lg font-semibold text-slate-900">Quick answer:</p>
@@ -187,7 +187,7 @@ export default function VisaDetailPage({ params }: { params: { origen: string; d
       {!isDomesticTrip && (
         <div className="card p-6 space-y-4">
           <div className="space-y-2">
-            <h2 className="text-xl font-semibold text-slate-900">❓ Quick FAQ about this travel requirement</h2>
+            <h2 className="text-xl font-semibold text-slate-900">❓ Quick FAQ about these visa requirements</h2>
             <p className="text-sm text-slate-600">
               Short answers about the most common authorization for short visits.
             </p>

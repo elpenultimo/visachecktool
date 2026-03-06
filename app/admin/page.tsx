@@ -5,7 +5,7 @@ import { REVIEW_STATUS_CONFIG, getReviewMetadata, ReviewStatusKey } from "@/lib/
 import { notFound } from "next/navigation";
 
 export const metadata = {
-  title: "NecesitoVisa.com",
+  title: "Visa Checker Tool",
   description: "Internal area",
 };
 
@@ -166,9 +166,9 @@ export default function AdminPage({ searchParams }: AdminPageProps) {
               className="rounded-lg border border-slate-200 px-3 py-2 text-sm shadow-soft focus:border-brand-primary focus:outline-none"
             >
               <option value="all">All</option>
-              <option value="green">Actualizado (🟢)</option>
+              <option value="green">Updated (🟢)</option>
               <option value="yellow">Needs review (🟡)</option>
-              <option value="red">Desactualizado (🔴)</option>
+              <option value="red">Outdated (🔴)</option>
             </select>
           </label>
           <label className="flex flex-col gap-1 text-sm text-slate-700">

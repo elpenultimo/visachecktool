@@ -1,4 +1,4 @@
-# NecesitoVisa.com
+# Visa Checker Tool
 
 Sitio Next.js (App Router) en TypeScript que responde si necesitas visa para viajar de un país a otro. Se apoya en datos locales en JSON/TS y está listo para deploy en Vercel.
 
