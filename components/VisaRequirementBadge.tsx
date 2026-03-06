@@ -23,7 +23,7 @@ export function VisaRequirementBadge({ requirement }: VisaRequirementBadgeProps)
   return (
     <span
       className={`inline-flex items-center rounded-full px-3 py-1 text-sm font-medium ${TYPE_STYLES[requirement_type]}`}
-      title={requirement_raw ? `Valor fuente: ${requirement_raw}` : undefined}
+      title={requirement_raw ? `Source value: ${requirement_raw}` : undefined}
     >
       {requirement_display}
     </span>

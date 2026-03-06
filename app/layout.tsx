@@ -4,8 +4,8 @@ import "./globals.css";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "NecesitoVisa.com",
-  description: "Find out in seconds if you need a visa for your next trip.",
+  title: "Visa Checker Tool",
+  description: "Check visa requirements in seconds based on your passport and destination.",
   metadataBase: new URL("https://necesitovisa.com"),
 };
 
@@ -23,9 +23,9 @@ export default function RootLayout({
           <div className="container-box flex items-center justify-between py-4">
             <Link href="/" className="flex items-center space-x-2 font-semibold text-lg text-brand-dark">
               <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-brand-primary text-white font-bold">
-                NV
+                VC
               </span>
-              <span>NecesitoVisa.com</span>
+              <span>Visa Checker Tool</span>
             </Link>
             <nav className="flex items-center space-x-4 text-sm text-slate-600">
               <Link href="/">Home</Link>
@@ -42,7 +42,7 @@ export default function RootLayout({
               This information is for reference only. Always verify with the embassy or official sources
               before traveling. We are not responsible for changes in immigration policies.
             </p>
-            <p className="text-slate-500">© {new Date().getFullYear()} NecesitoVisa.com</p>
+            <p className="text-slate-500">© {new Date().getFullYear()} Visa Checker Tool</p>
           </div>
         </footer>
       </body>

@@ -21,8 +21,8 @@ export function generateMetadata({ params }: { params: { origen: string } }): Me
   const canonical = `https://necesitovisa.com/visa/${canonicalSlug}`;
 
   return {
-    title: `Visa requirements for citizens of ${entry.name_es}`,
-    description: `Check visa requirements for travelers from ${entry.name_es}.`,
+    title: `Visa requirements for ${entry.name_es} passport holders`,
+    description: `Check travel visa requirements and visa policy details for ${entry.name_es} passport holders.`,
     alternates: {
       canonical,
     },
@@ -44,9 +44,9 @@ export default function VisaOriginPage({ params }: { params: { origen: string } 
   return (
     <div className="container-box py-10 space-y-6">
       <div className="space-y-3">
-        <h1 className="text-3xl font-bold text-slate-900">Visa requirements for citizens of {visaData.origin_name_es}</h1>
+        <h1 className="text-3xl font-bold text-slate-900">Visa requirements for {visaData.origin_name_es} passport holders</h1>
         <p className="text-slate-600 text-sm max-w-2xl">
-          Check visa requirements when traveling from {visaData.origin_name_es} to any destination.
+          Check visa requirements and travel visa policy details for {visaData.origin_name_es} passport holders traveling to any destination.
         </p>
       </div>
 

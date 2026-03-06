@@ -17,11 +17,11 @@ export default function HomePage() {
       <section className="grid gap-10 lg:grid-cols-2 lg:items-center">
         <div className="space-y-6">
           <p className="inline-flex rounded-full bg-brand-primary/10 px-3 py-1 text-sm font-medium text-brand-primary">
-            NecesitoVisa.com
+            Visa Checker Tool
           </p>
           <h1 className="text-4xl font-bold text-slate-900 leading-tight">Do I need a visa to travel?</h1>
           <p className="text-lg text-slate-600">
-            Clear visa requirement information based on official sources, designed for real travelers.
+            Find up-to-date visa requirements for passport holders using trusted official sources.
           </p>
           <HomeForm
             origins={originCountries.map((c) => ({ name: c.name_es, slug: c.slug_es }))}
@@ -41,7 +41,7 @@ export default function HomePage() {
                   className="card p-4 transition hover:shadow-soft"
                 >
                   <p className="font-semibold text-slate-900">{dest.name_es}</p>
-                  <p className="text-sm text-slate-600">Check visa requirements for Chilean passport holders</p>
+                  <p className="text-sm text-slate-600">Check travel visa requirements for Chilean passport holders</p>
                 </Link>
               );
             })}
@@ -67,7 +67,7 @@ export default function HomePage() {
         <div className="card p-6 space-y-2">
           <h3 className="font-semibold text-slate-900">🌍 Global coverage</h3>
           <p className="text-sm text-slate-600">
-            Check visa requirements for hundreds of nationality and destination combinations in one place.
+            Compare visa policy and visa requirements for passport holders across hundreds of destinations.
           </p>
         </div>
       </section>

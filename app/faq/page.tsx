@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Frequently asked questions about visas and travel authorizations | NecesitoVisa.com",
+  title: "Frequently asked questions about visa requirements | Visa Checker Tool",
   description:
-    "Clear answers about visas, eVisas, and electronic travel authorizations such as ESTA or eTA.",
+    "Clear answers about visa requirements, travel visas, eVisas, and electronic travel authorizations such as ESTA or eTA.",
 };
 
 const faqItems = [
