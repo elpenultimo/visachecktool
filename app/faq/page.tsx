@@ -1,41 +1,41 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Preguntas frecuentes sobre visas y autorizaciones | NecesitoVisa.com",
+  title: "Frequently asked questions about visas and travel authorizations | NecesitoVisa.com",
   description:
-    "Respuestas claras sobre visas, eVisa y autorizaciones electrónicas como ESTA o eTA. Información general y actualizada.",
+    "Clear answers about visas, eVisas, and electronic travel authorizations such as ESTA or eTA.",
 };
 
 const faqItems = [
   {
-    question: "¿Qué es una visa?",
+    question: "What is a visa?",
     answer:
-      "Una visa es un permiso oficial emitido por un país que autoriza a una persona extranjera a entrar, permanecer o transitar por su territorio durante un tiempo y con un propósito específico (turismo, trabajo, estudio, tránsito, etc.). Los requisitos dependen de la nacionalidad y el destino.",
+      "A visa is an official permit issued by a country that allows a foreign person to enter, stay, or transit its territory for a limited time and specific purpose (tourism, work, study, transit, etc.). Requirements depend on nationality and destination.",
   },
   {
-    question: "¿Qué significa “no necesita visa”?",
+    question: "What does ‘no visa required’ mean?",
     answer:
-      "Significa que puedes ingresar al país sin solicitar una visa previa, normalmente por turismo y por un tiempo limitado. Aun así, pueden exigirse otros requisitos como pasaporte vigente, pasaje de salida, seguro o fondos suficientes.",
+      "It means you can enter the country without applying for a visa in advance, usually for tourism and for a limited time. Other requirements may still apply, such as a valid passport, onward ticket, insurance, or proof of funds.",
   },
   {
-    question: "¿Qué es una e-Visa?",
+    question: "What is an eVisa?",
     answer:
-      "Una e-Visa es una visa que se solicita completamente por internet, sin acudir a una embajada. Una vez aprobada, queda asociada electrónicamente a tu pasaporte y se verifica al momento del ingreso al país.",
+      "An eVisa is a visa requested fully online without visiting an embassy. Once approved, it is usually linked electronically to your passport and checked on arrival.",
   },
   {
-    question: "¿Qué es una ESTA, eTA o ETA?",
+    question: "What is ESTA, eTA, or ETA?",
     answer:
-      "Las autorizaciones electrónicas como ESTA, eTA o ETA no son visas tradicionales. Permiten viajar por turismo o tránsito sin visa, pero deben solicitarse online antes del viaje y pueden tener costo y vigencia limitada.",
+      "Electronic authorizations such as ESTA, eTA, or ETA are not traditional visas. They allow travel for tourism or transit without a visa but must be requested online before travel and may have fees and limited validity.",
   },
   {
-    question: "¿Quién otorga las visas y autorizaciones de viaje?",
+    question: "Who issues visas and travel authorizations?",
     answer:
-      "Las visas y autorizaciones solo son otorgadas por autoridades oficiales del país de destino, como embajadas, consulados o servicios de inmigración. Ninguna aerolínea ni sitio privado emite visas.",
+      "Visas and authorizations are only issued by official authorities of the destination country, such as embassies, consulates, or immigration services. Airlines and private websites do not issue visas.",
   },
   {
-    question: "¿Pueden cambiar los requisitos de visa?",
+    question: "Can visa requirements change?",
     answer:
-      "Sí. Los requisitos migratorios pueden cambiar en cualquier momento. Por eso siempre se recomienda verificar la información directamente en fuentes oficiales antes de viajar.",
+      "Yes. Immigration requirements can change at any time. Always verify details directly on official sources before traveling.",
   },
 ];
 
@@ -57,11 +57,11 @@ export default function FaqPage() {
     <div className="container-box py-12 space-y-10">
       <section className="space-y-4">
         <p className="inline-flex rounded-full bg-brand-primary/10 px-3 py-1 text-sm font-medium text-brand-primary">
-          Preguntas frecuentes
+          FAQ
         </p>
-        <h1 className="text-3xl font-bold text-slate-900">Conceptos básicos sobre visas y autorizaciones</h1>
+        <h1 className="text-3xl font-bold text-slate-900">Visa and travel authorization basics</h1>
         <p className="text-lg text-slate-600">
-          Respuestas claras y neutrales para entender términos comunes antes de planificar tu viaje.
+          Clear, neutral answers to understand common terms before planning your trip.
         </p>
       </section>
 
@@ -75,8 +75,8 @@ export default function FaqPage() {
       </section>
 
       <section className="text-sm text-slate-500">
-        Esta información es general y no constituye asesoría legal ni migratoria. Verifica siempre con fuentes
-        oficiales antes de viajar.
+        This information is general and does not constitute legal or immigration advice. Always verify with official
+        sources before traveling.
       </section>
 
       <script

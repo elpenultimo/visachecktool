@@ -8,45 +8,45 @@ type RequirementExplanationParams = {
 };
 
 const buildVisaFreeWithDays = (days: number) =>
-  `No necesitas visa para turismo por hasta ${days} días (según la información disponible). ` +
-  "Ojo: pueden existir condiciones como pasaje de salida, seguro o fondos. " +
-  "Para estadías más largas o para trabajar/estudiar, normalmente se requiere un permiso o visa distinta.";
+  `You do not need a visa for tourism stays up to ${days} days (based on available information). ` +
+  "Keep in mind there may be conditions such as onward ticket, insurance, or proof of funds. " +
+  "For longer stays, work, or study, a different permit or visa is usually required.";
 
 const buildExplanationByType = (type: RequirementType, days?: number) => {
   switch (type) {
     case "E_VISA":
       return (
-        "Una e-Visa es una autorización electrónica que se solicita por internet antes del viaje. " +
-        "Normalmente se aprueba y se asocia a tu pasaporte; en el aeropuerto pueden pedir comprobantes " +
-        "(pasaje de salida, alojamiento, fondos). Revisa el sitio oficial para pasos y tiempos. " +
-        "Evita webs intermediarias; usa el sitio oficial."
+        "An eVisa is an electronic authorization requested online before travel. " +
+        "It is typically approved and linked to your passport; at the airport authorities may request supporting documents " +
+        "(onward ticket, accommodation, proof of funds). Check the official website for exact steps and timelines. " +
+        "Avoid intermediaries and use official channels."
       );
     case "VOA":
       return (
-        "La visa a la llegada se tramita al aterrizar (o al ingresar por frontera). " +
-        "Suele requerir pasaporte vigente, formulario y pago de tasas; a veces piden pasaje de salida y reserva. " +
-        "Confirma requisitos exactos antes de viajar."
+        "Visa on arrival is processed when you land (or at a land border crossing). " +
+        "It usually requires a valid passport, form completion, and fee payment; some countries also request onward tickets and bookings. " +
+        "Confirm exact requirements before travel."
       );
     case "REQUIRES_VISA":
       return (
-        "Esto significa que necesitas solicitar una visa en una embajada o consulado (o plataforma oficial) antes de viajar. " +
-        "Los requisitos varían según motivo (turismo, trabajo, estudio) y pueden incluir entrevista y documentos. " +
-        "Revisa la fuente oficial para el procedimiento."
+        "This means you must apply for a visa at an embassy/consulate (or official government platform) before traveling. " +
+        "Requirements vary by purpose (tourism, work, study) and may include interviews and supporting documents. " +
+        "Always follow official guidance."
       );
     case "NO_VISA_DAYS":
       return days ? buildVisaFreeWithDays(days) : undefined;
     case "NO_VISA":
       return (
-        "No necesitas visa para visitas cortas (turismo) según la información disponible. " +
-        "Para estadías largas, trabajo o estudio, los requisitos suelen ser distintos. " +
-        "Confirma condiciones en la fuente oficial."
+        "You do not need a visa for short tourism visits based on available information. " +
+        "For longer stays, work, or study, requirements are usually different. " +
+        "Confirm conditions on official sources."
       );
     case "ETA":
     case "ESTA":
       return (
-        "Una autorización electrónica (ETA/eTA/ESTA) no es una visa tradicional: es un permiso previo para abordar y entrar por turismo o tránsito. " +
-        "Se solicita online, puede tener costo y toma desde minutos a días. Debe gestionarse antes del viaje. " +
-        "Evita webs intermediarias; usa el sitio oficial."
+        "An electronic travel authorization (ETA/eTA/ESTA) is not a traditional visa: it is pre-travel approval to board and enter for tourism or transit. " +
+        "It is requested online, may involve fees, and can take minutes to days to process. It must be obtained before travel. " +
+        "Avoid intermediaries and use official channels."
       );
     case "UNKNOWN":
     default:
@@ -57,8 +57,8 @@ const buildExplanationByType = (type: RequirementType, days?: number) => {
 export function getRequirementExplanation({ type, days }: RequirementExplanationParams) {
   if (!type) {
     return (
-      "Los requisitos pueden cambiar y dependen del tipo de viaje (turismo, trabajo, estudio). " +
-      "Para confirmar el trámite exacto y documentos, revisa siempre fuentes oficiales."
+      "Requirements can change and depend on your travel purpose (tourism, work, study). " +
+      "Always verify exact procedures and required documents on official sources."
     );
   }
 
@@ -66,8 +66,8 @@ export function getRequirementExplanation({ type, days }: RequirementExplanation
 
   if (!explanation) {
     return (
-      "Los requisitos pueden cambiar y dependen del tipo de viaje (turismo, trabajo, estudio). " +
-      "Para confirmar el trámite exacto y documentos, revisa siempre fuentes oficiales."
+      "Requirements can change and depend on your travel purpose (tourism, work, study). " +
+      "Always verify exact procedures and required documents on official sources."
     );
   }
 

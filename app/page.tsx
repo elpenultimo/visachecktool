@@ -10,7 +10,7 @@ const originCountries = countries;
 const destinationCountries = countries;
 
 export default function HomePage() {
-  const popularDestinations = ["estados-unidos", "canada", "reino-unido", "schengen", "australia"];
+  const popularDestinations = ["united-states", "canada", "united-kingdom", "schengen", "australia"];
 
   return (
     <div className="container-box py-12 space-y-16">
@@ -19,11 +19,9 @@ export default function HomePage() {
           <p className="inline-flex rounded-full bg-brand-primary/10 px-3 py-1 text-sm font-medium text-brand-primary">
             NecesitoVisa.com
           </p>
-          <h1 className="text-4xl font-bold text-slate-900 leading-tight">
-            ¿Necesito visa para viajar a cualquier destino?
-          </h1>
+          <h1 className="text-4xl font-bold text-slate-900 leading-tight">Do I need a visa to travel?</h1>
           <p className="text-lg text-slate-600">
-            Información clara sobre requisitos de visa, basada en fuentes oficiales y pensada para viajeros reales.
+            Clear visa requirement information based on official sources, designed for real travelers.
           </p>
           <HomeForm
             origins={originCountries.map((c) => ({ name: c.name_es, slug: c.slug_es }))}
@@ -31,7 +29,7 @@ export default function HomePage() {
           />
         </div>
         <div className="card p-6 space-y-4">
-          <h2 className="text-xl font-semibold text-slate-900">Destinos populares (Chile)</h2>
+          <h2 className="text-xl font-semibold text-slate-900">Popular destinations (Chile)</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {popularDestinations.map((slug) => {
               const dest = destinationCountries.find((d) => d.slug_es === slug || d.slug_en === slug);
@@ -43,7 +41,7 @@ export default function HomePage() {
                   className="card p-4 transition hover:shadow-soft"
                 >
                   <p className="font-semibold text-slate-900">{dest.name_es}</p>
-                  <p className="text-sm text-slate-600">Ver requisitos para personas de Chile</p>
+                  <p className="text-sm text-slate-600">Check visa requirements for Chilean passport holders</p>
                 </Link>
               );
             })}
@@ -53,40 +51,36 @@ export default function HomePage() {
 
       <section className="grid gap-8 md:grid-cols-3">
         <div className="card p-6 space-y-2">
-          <h3 className="font-semibold text-slate-900">🛂 ¿Qué es una visa?</h3>
+          <h3 className="font-semibold text-slate-900">🛂 What is a visa?</h3>
           <p className="text-sm text-slate-600">
-            Una visa es una autorización que otorga un país para permitir la entrada, permanencia o tránsito de
-            ciudadanos extranjeros por un tiempo determinado y bajo ciertas condiciones.
+            A visa is an authorization granted by a country that allows foreign citizens to enter, stay, or transit
+            for a specific time under specific conditions.
           </p>
         </div>
         <div className="card p-6 space-y-2">
-          <h3 className="font-semibold text-slate-900">🏛️ ¿Quién otorga las visas?</h3>
+          <h3 className="font-semibold text-slate-900">🏛️ Who issues visas?</h3>
           <p className="text-sm text-slate-600">
-            Las visas son otorgadas por el país de destino, normalmente a través de sus embajadas, consulados o
-            sistemas oficiales de inmigración.
+            Visas are issued by the destination country, usually through embassies, consulates, or official
+            immigration systems.
           </p>
         </div>
         <div className="card p-6 space-y-2">
-          <h3 className="font-semibold text-slate-900">🌍 Cobertura global</h3>
+          <h3 className="font-semibold text-slate-900">🌍 Global coverage</h3>
           <p className="text-sm text-slate-600">
-            Consulta requisitos de visa para cientos de combinaciones de nacionalidad y destino en un solo lugar.
+            Check visa requirements for hundreds of nationality and destination combinations in one place.
           </p>
         </div>
       </section>
 
       <section className="card p-6 space-y-4">
-        <h2 className="text-xl font-semibold text-slate-900">Fuentes oficiales</h2>
-        <p className="text-sm text-slate-600">
-          Siempre verifica en sitios oficiales antes de viajar. Recomendamos:
-        </p>
+        <h2 className="text-xl font-semibold text-slate-900">Official sources</h2>
+        <p className="text-sm text-slate-600">Always verify on official websites before you travel. We recommend:</p>
         <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
-          <li>IATA/Timatic para condiciones de ingreso.</li>
-          <li>Páginas de gobiernos y ministerios de relaciones exteriores.</li>
-          <li>Embajadas y consulados del país destino.</li>
+          <li>IATA/Timatic for entry conditions.</li>
+          <li>Government and foreign affairs ministry websites.</li>
+          <li>Embassies and consulates of the destination country.</li>
         </ul>
-        <p className="text-xs text-slate-500">
-          Esta web es referencial. No constituye asesoría legal ni migratoria.
-        </p>
+        <p className="text-xs text-slate-500">This website is for reference and does not constitute legal advice.</p>
       </section>
     </div>
   );

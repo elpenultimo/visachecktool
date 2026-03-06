@@ -1,4 +1,4 @@
-import { notFound, redirect } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import Link from "next/link";
 import { Metadata } from "next";
 import { listAll, resolveOrigin } from "@/lib/countryIndex";
@@ -15,14 +15,14 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: { params: { origen: string } }): Metadata {
   const resolved = resolveOrigin(params.origen);
-  if (!resolved) return { title: "País no encontrado" };
+  if (!resolved) return { title: "Country not found" };
 
   const { entry, canonicalSlug } = resolved;
   const canonical = `https://necesitovisa.com/visa/${canonicalSlug}`;
 
   return {
-    title: `Visa para ciudadanos de ${entry.name_es}`,
-    description: `Revisa requisitos de visa para personas de ${entry.name_es}.`,
+    title: `Visa requirements for citizens of ${entry.name_es}`,
+    description: `Check visa requirements for travelers from ${entry.name_es}.`,
     alternates: {
       canonical,
     },
@@ -34,7 +34,7 @@ export default function VisaOriginPage({ params }: { params: { origen: string } 
   if (!resolved) return notFound();
 
   if (resolved.redirected) {
-    redirect(`/visa/${resolved.canonicalSlug}`);
+    permanentRedirect(`/visa/${resolved.canonicalSlug}`);
   }
 
   const { entry } = resolved;
@@ -44,9 +44,9 @@ export default function VisaOriginPage({ params }: { params: { origen: string } 
   return (
     <div className="container-box py-10 space-y-6">
       <div className="space-y-3">
-        <h1 className="text-3xl font-bold text-slate-900">Visa para ciudadanos de {visaData.origin_name_es}</h1>
+        <h1 className="text-3xl font-bold text-slate-900">Visa requirements for citizens of {visaData.origin_name_es}</h1>
         <p className="text-slate-600 text-sm max-w-2xl">
-          Consulta los requisitos de visa para viajar desde {visaData.origin_name_es} a cualquier destino.
+          Check visa requirements when traveling from {visaData.origin_name_es} to any destination.
         </p>
       </div>
 
@@ -54,8 +54,8 @@ export default function VisaOriginPage({ params }: { params: { origen: string } 
         <table className="min-w-full border border-slate-200 text-sm">
           <thead className="bg-slate-50">
             <tr>
-              <th className="px-4 py-2 text-left font-semibold text-slate-700 border-b border-slate-200">Destino</th>
-              <th className="px-4 py-2 text-left font-semibold text-slate-700 border-b border-slate-200">Requisito de visa</th>
+              <th className="px-4 py-2 text-left font-semibold text-slate-700 border-b border-slate-200">Destination</th>
+              <th className="px-4 py-2 text-left font-semibold text-slate-700 border-b border-slate-200">Visa requirement</th>
             </tr>
           </thead>
           <tbody>
@@ -77,7 +77,7 @@ export default function VisaOriginPage({ params }: { params: { origen: string } 
                       <>
                         <VisaRequirementBadge requirement={normalized} />
                         {requirement_type === "UNKNOWN" && (
-                          <p className="text-xs text-slate-500">Valor fuente: {destination.requirement || "N/D"}</p>
+                          <p className="text-xs text-slate-500">Source value: {destination.requirement || "N/A"}</p>
                         )}
                       </>
                     );

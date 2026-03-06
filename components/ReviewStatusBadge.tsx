@@ -20,7 +20,7 @@ export function ReviewStatusBadge({
       className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-xs font-medium ${
         badgeStyles[statusKey]
       }`}
-      aria-label={`Estado de revisión: ${status.label}`}
+      aria-label={`Review status: ${status.label}`}
     >
       <span aria-hidden>{status.emoji}</span>
       {withLabel && status.label}

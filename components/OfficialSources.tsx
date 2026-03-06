@@ -27,15 +27,15 @@ export function OfficialSources({ originName, destinationName, isDomesticTrip = 
     return (
       <div className="card p-6 space-y-4">
         <div className="space-y-2">
-          <h2 className="text-xl font-semibold text-slate-900">📌 Documentación para viajar dentro de tu país</h2>
+          <h2 className="text-xl font-semibold text-slate-900">📌 Documents for domestic travel</h2>
           <p className="text-sm text-slate-600">
-            Para viajar dentro de tu propio país no necesitas visa. Solo asegúrate de llevar tu documentación
-            oficial vigente (por ejemplo, cédula de identidad o pasaporte, según corresponda). En algunos casos (vuelos
-            domésticos o zonas especiales) podrían pedirte identificación al embarcar o en controles.
+            For domestic travel within your own country, you do not need a visa. Make sure you carry valid official
+            identification (for example, national ID card or passport, depending on local rules). In some cases
+            (domestic flights or special zones), identification may be requested at boarding or checkpoints.
           </p>
         </div>
         <div className="rounded-lg bg-amber-50 p-3 text-sm text-amber-900">
-          <p>Las normas internas pueden cambiar. Verifica requisitos de identificación según el medio de transporte y normativa local.</p>
+          <p>Internal rules can change. Check ID requirements based on transport type and local regulations.</p>
         </div>
       </div>
     );
@@ -43,20 +43,20 @@ export function OfficialSources({ originName, destinationName, isDomesticTrip = 
 
   const destinationFlag = getFlagEmoji(destinationName);
   const originFlag = getFlagEmoji(originName);
-  const embassyQuery = `embajada de ${destinationName} en ${originName}`;
-  const foreignAffairsQuery = `ministerio relaciones exteriores ${originName}`;
-  const immigrationQuery = `sitio oficial inmigración ${destinationName}`;
-  const migrationBorderQuery = `sitio oficial migración frontera ${destinationName}`;
+  const embassyQuery = `embassy of ${destinationName} in ${originName}`;
+  const foreignAffairsQuery = `foreign affairs ministry ${originName}`;
+  const immigrationQuery = `official immigration website ${destinationName}`;
+  const migrationBorderQuery = `official border control website ${destinationName}`;
 
   return (
     <div className="card p-6 space-y-4">
       <div className="space-y-2">
         <h2 className="text-xl font-semibold text-slate-900">
-          📌 Verificación y fuentes oficiales{destinationFlag ? ` ${destinationFlag}` : ""}
+          📌 Verification and official sources{destinationFlag ? ` ${destinationFlag}` : ""}
         </h2>
         <p className="text-sm text-slate-600">
-          La información mostrada en esta página es referencial y puede cambiar en cualquier momento. Para confirmar requisitos
-          actualizados, siempre recomendamos verificar directamente con fuentes oficiales.
+          The information on this page is for reference only and may change at any time. To confirm current
+          requirements, always verify directly with official sources.
         </p>
       </div>
 
@@ -67,7 +67,7 @@ export function OfficialSources({ originName, destinationName, isDomesticTrip = 
           target="_blank"
           rel="noopener noreferrer"
         >
-          Buscar embajada de {destinationName} en {originName}
+          Find the embassy of {destinationName} in {originName}
         </a>
       )}
 
@@ -81,11 +81,11 @@ export function OfficialSources({ originName, destinationName, isDomesticTrip = 
           >
             <strong>
               {isDomesticTrip ? (
-                <>Sitio oficial de migración / frontera de {destinationName} (si aplica)</>
+                <>Official migration / border website for {destinationName} (if applicable)</>
               ) : (
                 <>
-                  Embajada o consulado de {destinationFlag ? `${destinationFlag} ` : ""}
-                  {destinationName} en {originFlag ? `${originFlag} ` : ""}
+                  Embassy or consulate of {destinationFlag ? `${destinationFlag} ` : ""}
+                  {destinationName} in {originFlag ? `${originFlag} ` : ""}
                   {originName}
                 </>
               )}
@@ -99,7 +99,7 @@ export function OfficialSources({ originName, destinationName, isDomesticTrip = 
             target="_blank"
             rel="noopener noreferrer"
           >
-            <strong>Ministerio de Relaciones Exteriores de {originName}</strong>
+            <strong>Foreign affairs ministry of {originName}</strong>
           </a>
         </li>
         <li>
@@ -111,8 +111,8 @@ export function OfficialSources({ originName, destinationName, isDomesticTrip = 
           >
             <strong>
               {isDomesticTrip
-                ? `Autoridad de migración / control fronterizo de ${destinationName} (si aplica)`
-                : `Sitio oficial de inmigración de ${destinationName} (si aplica)`}
+                ? `Migration / border control authority for ${destinationName} (if applicable)`
+                : `Official immigration website for ${destinationName} (if applicable)`}
             </strong>
           </a>
         </li>
@@ -120,8 +120,8 @@ export function OfficialSources({ originName, destinationName, isDomesticTrip = 
 
       <div className="rounded-lg bg-amber-50 p-3 text-sm text-amber-900">
         <p>
-          Las políticas migratorias pueden cambiar sin previo aviso. NecesitoVisa.com no se hace responsable por modificaciones
-          posteriores a la fecha de consulta.
+          Immigration policies can change without notice. NecesitoVisa.com is not responsible for updates made after
+          your consultation date.
         </p>
       </div>
     </div>

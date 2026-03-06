@@ -39,169 +39,169 @@ const normalizeFaqType = (requirementType: string): VisaFaqType => {
 
 const baseQuestions = (destination: string): VisaFaqItem[] => [
   {
-    question: "¿Qué es una visa?",
+    question: "What is a visa?",
     answer:
-      "Es una autorización que emite el país de destino para permitir el ingreso por un período y motivo específicos, como turismo.",
+      "It is an authorization issued by the destination country to allow entry for a specific period and purpose, such as tourism.",
   },
   {
-    question: "¿La visa garantiza la entrada al país?",
+    question: "Does a visa guarantee entry?",
     answer:
-      "No. La decisión final de entrada la toma la autoridad migratoria al llegar, y puede pedir documentos adicionales.",
+      "No. Final admission is decided by border/immigration authorities on arrival, who may request additional documents.",
   },
   {
-    question: "¿Con cuánta anticipación conviene iniciar el trámite?",
+    question: "How early should I start the process?",
     answer:
-      "Depende del tipo de permiso, pero es recomendable empezar con varias semanas de anticipación para evitar contratiempos.",
+      "It depends on the permit type, but it is best to start several weeks in advance to avoid delays.",
   },
   {
-    question: `¿Qué documentos suelen pedir para viajar a ${destination}?`,
+    question: `What documents are usually required to travel to ${destination}?`,
     answer:
-      "Generalmente se solicita pasaporte vigente y, en algunos casos, prueba de fondos, alojamiento o pasaje de salida.",
+      "A valid passport is usually required, and sometimes proof of funds, accommodation, or onward travel.",
   },
 ];
 
 const faqByType: Record<VisaFaqType, (destination: string) => VisaFaqItem[]> = {
   NO_VISA: (destination) => [
     {
-      question: "¿Qué significa ingreso sin visa?",
-      answer: "Significa que para viajes cortos de turismo no necesitas una visa previa para entrar.",
+      question: "What does visa-free entry mean?",
+      answer: "It means that for short tourism trips, you do not need a visa in advance.",
     },
     {
-      question: "¿Puedo quedarme por tiempo indefinido?",
-      answer: "No. Aunque no se exija visa, normalmente hay un límite de días permitido para turismo.",
+      question: "Can I stay indefinitely?",
+      answer: "No. Even when a visa is not required, there is usually a maximum number of days allowed for tourism.",
     },
     {
-      question: "¿Pueden pedirme documentos al llegar?",
-      answer: "Sí. Pueden solicitar pasaje de salida, reservas o evidencia de solvencia.",
+      question: "Can authorities ask for documents on arrival?",
+      answer: "Yes. They may request onward tickets, bookings, or proof of funds.",
     },
     ...baseQuestions(destination),
   ],
   NO_VISA_DAYS: (destination) => [
     {
-      question: "¿Qué significa entrada sin visa por días limitados?",
-      answer: "Puedes viajar por turismo sin visa, pero solo por un número máximo de días.",
+      question: "What does visa-free for limited days mean?",
+      answer: "You can travel for tourism without a visa, but only up to a maximum number of days.",
     },
     {
-      question: "¿Qué pasa si necesito quedarme más tiempo?",
-      answer: "Deberías gestionar una visa o permiso distinto antes del viaje o según las reglas locales.",
+      question: "What if I need to stay longer?",
+      answer: "You should apply for a different visa/permit before travel, according to local rules.",
     },
     {
-      question: "¿Pueden pedirme documentos al llegar?",
-      answer: "Sí. Aun sin visa, pueden pedir pasaje de salida, reservas o fondos.",
+      question: "Can authorities ask for documents on arrival?",
+      answer: "Yes. Even without a visa, onward tickets, reservations, or funds may be required.",
     },
     ...baseQuestions(destination),
   ],
   E_VISA: (destination) => [
     {
-      question: "¿Qué es una eVisa?",
+      question: "What is an eVisa?",
       answer:
-        "Es una autorización electrónica que se solicita online antes del viaje y se asocia a tu pasaporte.",
+        "It is an electronic authorization requested online before travel and linked to your passport.",
     },
     {
-      question: "¿Cómo se solicita una eVisa?",
+      question: "How do I apply for an eVisa?",
       answer:
-        "Normalmente se completa un formulario en línea, se suben documentos y se paga una tasa.",
+        "Typically you complete an online form, upload documents, and pay a fee.",
     },
     {
-      question: "¿Cuánto tarda en aprobarse?",
-      answer: "Puede tardar desde horas hasta varios días, según el país y la temporada.",
+      question: "How long does approval take?",
+      answer: "It can take from hours to several days depending on the country and season.",
     },
     {
-      question: `¿Necesito imprimir la eVisa para viajar a ${destination}?`,
+      question: `Do I need to print the eVisa when traveling to ${destination}?`,
       answer:
-        "En muchos casos basta con el registro electrónico, pero es útil llevar una copia digital o impresa.",
+        "In many cases the electronic record is enough, but carrying a digital or printed copy is useful.",
     },
     ...baseQuestions(destination),
   ],
   ESTA: (destination) => [
     {
-      question: "¿Qué es la autorización ESTA?",
+      question: "What is ESTA?",
       answer:
-        "Es un permiso electrónico previo que habilita viajes cortos por turismo o tránsito sin visa tradicional.",
+        "It is an electronic pre-travel authorization for short tourism or transit trips without a traditional visa.",
     },
     {
-      question: "¿La ESTA es una visa?",
-      answer: "No. Es una autorización de viaje que se tramita en línea antes de volar.",
+      question: "Is ESTA a visa?",
+      answer: "No. It is a travel authorization completed online before flying.",
     },
     {
-      question: "¿Cuánto tiempo antes debo solicitarla?",
-      answer: "Es recomendable hacerlo con días o semanas de anticipación para evitar retrasos.",
+      question: "How far in advance should I apply?",
+      answer: "It is recommended to apply days or weeks in advance to avoid delays.",
     },
     {
-      question: `¿La ESTA sirve para cualquier motivo de viaje a ${destination}?`,
-      answer: "No. Usualmente aplica para turismo o tránsito; trabajo o estudio requieren otro trámite.",
+      question: `Does ESTA cover any travel purpose to ${destination}?`,
+      answer: "No. It usually applies to tourism or transit; work or study require a different process.",
     },
     ...baseQuestions(destination),
   ],
   ETA: (destination) => [
     {
-      question: "¿Qué es una ETA?",
+      question: "What is an ETA?",
       answer:
-        "Es una autorización electrónica previa que se solicita online antes de viajar por turismo o tránsito.",
+        "It is a pre-travel electronic authorization requested online before tourism or transit travel.",
     },
     {
-      question: "¿La ETA reemplaza a la visa tradicional?",
-      answer: "Para viajes cortos sí, pero no cubre trabajo o estudio.",
+      question: "Does ETA replace a traditional visa?",
+      answer: "For short trips yes, but it does not cover work or study.",
     },
     {
-      question: "¿Cuándo debo solicitar la ETA?",
-      answer: "Conviene hacerlo con anticipación, ya que la aprobación puede tomar tiempo.",
+      question: "When should I apply for ETA?",
+      answer: "It is best to apply in advance since approval can take time.",
     },
     {
-      question: `¿Debo llevar prueba de la ETA al viajar a ${destination}?`,
-      answer: "Es útil tener el comprobante a mano, aunque muchas veces queda asociada al pasaporte.",
+      question: `Should I carry proof of ETA when traveling to ${destination}?`,
+      answer: "It is useful to keep proof handy, although it is often linked to your passport.",
     },
     ...baseQuestions(destination),
   ],
   VOA: (destination) => [
     {
-      question: "¿Qué es la visa a la llegada?",
-      answer: "Es un permiso que se tramita al aterrizar o ingresar por frontera.",
+      question: "What is visa on arrival?",
+      answer: "It is a permit processed when you land or cross the border.",
     },
     {
-      question: "¿Qué se necesita para obtenerla?",
-      answer: "Suele requerir pasaporte vigente, formulario y pago de tasas.",
+      question: "What is needed to obtain it?",
+      answer: "It usually requires a valid passport, a form, and fee payment.",
     },
     {
-      question: "¿Puedo viajar sin preparación previa?",
-      answer: "Aun con visa a la llegada, es aconsejable llevar documentos y fondos comprobables.",
+      question: "Can I travel without preparation?",
+      answer: "Even with visa on arrival, it is advisable to carry supporting documents and proof of funds.",
     },
     ...baseQuestions(destination),
   ],
   REQUIRES_VISA: (destination) => [
     {
-      question: "¿Qué es una visa consular tradicional?",
+      question: "What is a traditional consular visa?",
       answer:
-        "Es un permiso que se solicita antes del viaje en un consulado o embajada, con requisitos y tiempos definidos.",
+        "It is a permit requested before travel at a consulate or embassy with defined requirements and timelines.",
     },
     {
-      question: "¿Quién otorga la visa?",
-      answer: "La otorga la autoridad migratoria del país de destino a través de su consulado o sistema oficial.",
+      question: "Who issues the visa?",
+      answer: "It is issued by the destination country’s immigration authority through its consulate or official system.",
     },
     {
-      question: "¿Cuánto tiempo antes debo solicitarla?",
-      answer: "Se recomienda iniciar el trámite con varias semanas de anticipación.",
+      question: "How far in advance should I apply?",
+      answer: "It is recommended to start the process several weeks in advance.",
     },
     {
-      question: `¿Puedo hacer escala en ${destination} sin visa?`,
+      question: `Can I transit in ${destination} without a visa?`,
       answer:
-        "Depende de si hay tránsito internacional sin pasar migración; algunas escalas exigen visado.",
+        "It depends on whether international transit is available without immigration clearance; some layovers require a visa.",
     },
     ...baseQuestions(destination),
   ],
   UNKNOWN: (destination) => [
     {
-      question: "¿Qué significa requisito de visa por confirmar?",
-      answer: "La información disponible no es concluyente y puede requerir verificación adicional.",
+      question: "What does visa requirement pending confirmation mean?",
+      answer: "Available information is inconclusive and may require additional verification.",
     },
     {
-      question: "¿Qué es una visa?",
+      question: "What is a visa?",
       answer:
-        "Es una autorización que emite el país de destino para permitir el ingreso por un período y motivo específicos.",
+        "It is an authorization issued by the destination country to allow entry for a specific period and purpose.",
     },
     {
-      question: "¿La visa garantiza la entrada?",
-      answer: "No. La autoridad migratoria define el ingreso al llegar.",
+      question: "Does a visa guarantee entry?",
+      answer: "No. Immigration authorities decide admission on arrival.",
     },
     ...baseQuestions(destination),
   ],

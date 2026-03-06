@@ -27,20 +27,20 @@ const MS_IN_MONTH = 1000 * 60 * 60 * 24 * 30;
 const statusConfig: Record<ReviewStatusKey, ReviewStatusInfo> = {
   green: {
     key: "green",
-    label: "Actualizado",
-    helperText: "Última revisión hace menos de 6 meses",
+    label: "Updated",
+    helperText: "Last review less than 6 months ago",
     emoji: "🟢",
   },
   yellow: {
     key: "yellow",
-    label: "Por revisar",
-    helperText: "Última revisión entre 6 y 12 meses",
+    label: "Needs review",
+    helperText: "Last review between 6 and 12 months ago",
     emoji: "🟡",
   },
   red: {
     key: "red",
-    label: "Desactualizado",
-    helperText: "Última revisión hace más de 12 meses",
+    label: "Outdated",
+    helperText: "Last review over 12 months ago",
     emoji: "🔴",
   },
 };
@@ -79,7 +79,7 @@ export const getReviewMetadata = (requirement: ExtendedRequirement): ReviewMetad
 
   return {
     status: statusConfig[statusKey],
-    lastReviewedText: lastReviewedValue ?? "Sin fecha",
+    lastReviewedText: lastReviewedValue ?? "No date",
     lastReviewedDate,
     ageInMs,
     monthsSinceReview,

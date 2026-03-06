@@ -56,15 +56,15 @@ for (let i = 1; i < records.length; i++) {
   if (!originKey) continue;
 
   const originNameEs = getCountryNameEs(originKey);
-  const originSlugEn = slugifyEn(originKey);
-  const originSlugEs = ensureUniqueSlug(slugifyEs(originNameEs) || originSlugEn, originSlugTracker);
+  const originSlugEn = ensureUniqueSlug(slugifyEn(originKey), originSlugTracker);
+  const originSlugEs = slugifyEs(originNameEs) || originSlugEn;
 
-  mapSlugToKey[originSlugEs] = originKey;
+  mapSlugToKey[originSlugEn] = originKey;
 
   const originAltSlugs = [];
-  if (originSlugEn && originSlugEn !== originSlugEs) {
-    originAltSlugs.push(originSlugEn);
-    mapAltToSlug[originSlugEn] = originSlugEs;
+  if (originSlugEs && originSlugEs !== originSlugEn) {
+    originAltSlugs.push(originSlugEs);
+    mapAltToSlug[originSlugEs] = originSlugEn;
   }
 
   const rawDestinations = {};
@@ -82,22 +82,19 @@ for (let i = 1; i < records.length; i++) {
     rawDestinations[destinationKey] = value;
 
     const destinationNameEs = getCountryNameEs(destinationKey);
-    const destSlugEn = slugifyEn(destinationKey);
-    const destSlugEs = ensureUniqueSlug(
-      slugifyEs(destinationNameEs) || destSlugEn,
-      destSlugTracker,
-    );
+    const destSlugEn = ensureUniqueSlug(slugifyEn(destinationKey), destSlugTracker);
+    const destSlugEs = slugifyEs(destinationNameEs) || destSlugEn;
 
-    if (destSlugEn && destSlugEn !== destSlugEs) {
-      altSlugToSlug[destSlugEn] = destSlugEs;
+    if (destSlugEs && destSlugEs !== destSlugEn) {
+      altSlugToSlug[destSlugEs] = destSlugEn;
     }
 
-    slugToKey[destSlugEs] = destinationKey;
+    slugToKey[destSlugEn] = destinationKey;
 
     destinations.push({
       key: destinationKey,
-      name_es: destinationNameEs,
-      slug_es: destSlugEs,
+      name_es: destinationKey,
+      slug_es: destSlugEn,
       requirement: value,
     });
   }
@@ -107,8 +104,8 @@ for (let i = 1; i < records.length; i++) {
     JSON.stringify(
       {
         origin_key: originKey,
-        origin_name_es: originNameEs,
-        origin_slug_es: originSlugEs,
+        origin_name_es: originKey,
+        origin_slug_es: originSlugEn,
         destinations,
         slug_to_key: slugToKey,
         alt_slug_to_slug: altSlugToSlug,
@@ -125,16 +122,16 @@ for (let i = 1; i < records.length; i++) {
 
   metaEntries.push({
     name_en: originKey,
-    name_es: originNameEs,
-    slug_es: originSlugEs,
+    name_es: originKey,
+    slug_es: originSlugEn,
     slug_en: originSlugEn,
   });
 
   indexList.push({
     key: originKey,
     name_en: originKey,
-    name_es: originNameEs,
-    slug_es: originSlugEs,
+    name_es: originKey,
+    slug_es: originSlugEn,
     slug_en: originSlugEn,
     alt_slugs: originAltSlugs,
   });
@@ -142,8 +139,8 @@ for (let i = 1; i < records.length; i++) {
   generated++;
 }
 
-metaEntries.sort((a, b) => a.name_es.localeCompare(b.name_es || b.name_en));
-indexList.sort((a, b) => a.name_es.localeCompare(b.name_es || b.name_en));
+metaEntries.sort((a, b) => a.name_en.localeCompare(b.name_en));
+indexList.sort((a, b) => a.name_en.localeCompare(b.name_en));
 
 fs.writeFileSync(META_PATH, JSON.stringify(metaEntries, null, 2), "utf8");
 fs.writeFileSync(
